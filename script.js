@@ -9,6 +9,8 @@ let tileCount = 20; //canvas 20x20
 let tileSize = (gameBox.width / tileCount) - 2; //size slightly smaller
 let headX = 10;
 let headY = 10;
+let foodX = 5;
+let foodY = 5;
 let xVelocity = 0, yVelocity = 0;
 
 //game loop update every interval
@@ -16,6 +18,10 @@ function drawGame(){
     console.log("again?");
     clearScreen();
     updateSnakePosition();
+
+    checkFoodEaten();
+
+    drawFood();
     drawSnake();
     setTimeout(drawGame, 2000/speed);
 }
@@ -33,36 +39,60 @@ function drawSnake(){
 function updateSnakePosition(){
     headX += xVelocity;
     headY += yVelocity;
-    //console.log("ayo");
+}
+
+function drawFood(){
+    ctx.fillStyle = "lightgreen";
+    ctx.fillRect(foodX * tileCount, foodY*tileCount, tileSize-5, tileSize-5);
+}
+
+function checkFoodEaten(){
+    if((headX == foodX) && (headY == foodY))
+        randomFoodPosition();
+}
+
+function randomFoodPosition(){
+    foodX = Math.floor(Math.random() * tileCount);
+    foodY = Math.floor(Math.random() * tileCount);
 }
 
 function newGame(){
+    randomFoodPosition();
+    drawGame();
 }
 
 //check key input
 document.addEventListener("keydown", keyDown);
 
 function keyDown(event){
-    //up key
+    //up key - cannot go down
     if(event.keyCode == 38){
+        if(yVelocity == 1)
+            return;
         yVelocity = -1;
         xVelocity = 0;
     }
 
-    //down key
+    //down key - cannot go up
     if(event.keyCode == 40){
+        if(yVelocity == -1)
+            return;
         yVelocity = 1;
         xVelocity = 0;
     }
 
-    //left key
+    //left key - cannot go right
     if(event.keyCode == 37){
+        if(xVelocity == 1)
+            return;
         yVelocity = 0;
         xVelocity = -1;
     }
 
-    //right key
+    //right key - cannot go left
     if(event.keyCode == 39){
+        if(xVelocity == -1)
+            return;
         yVelocity = 0;
         xVelocity = 1;
     }
@@ -71,4 +101,3 @@ function keyDown(event){
 }
 
 
-drawGame();
