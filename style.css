@@ -9,11 +9,15 @@ body{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #game-box{
-    width: 400px;
-    height: 400px;
-    background-color: rgb(135, 110, 64);
-    margin: 50px;
+    /* background-color: rgb(135, 110, 64); */
+    padding: 30px;
 }
 
 #new-game{
@@ -21,8 +25,9 @@ body{
     font-size: 30px;
     font-weight: bold;
     cursor: pointer;
-    padding: 20px;
+    padding: 30px;
     border-radius: 50%;
+    border: 3px;
     color: lightcyan;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
