@@ -1,6 +1,7 @@
 //attributes from the html files
 const gameBox = document.getElementById("game-box");
 const ctx = gameBox.getContext("2d");
+const gameScoreBox = document.getElementById("score");
 
 //attributes from the game
 let speed = 10;
@@ -12,15 +13,15 @@ let headY = 10;
 let foodX = 5;
 let foodY = 5;
 let xVelocity = 0, yVelocity = 0;
+let score = 0;
+let highestScore = 0;
 
 //game loop update every interval
 function drawGame(){
-    console.log("again?");
+    
     clearScreen();
     updateSnakePosition();
-
     checkFoodEaten();
-
     drawFood();
     drawSnake();
     setTimeout(drawGame, 2000/speed);
@@ -48,7 +49,12 @@ function drawFood(){
 
 function checkFoodEaten(){
     if((headX == foodX) && (headY == foodY))
+    {
         randomFoodPosition();
+        score++;
+        gameScoreBox.innerHTML = "Score: " + score;
+
+    }
 }
 
 function randomFoodPosition(){
@@ -59,6 +65,10 @@ function randomFoodPosition(){
 function newGame(){
     randomFoodPosition();
     drawGame();
+    if(score > highestScore)
+        highestScore = score;
+
+    gameScoreBox.innerHTML = "Highest score: " + highestScore;
 }
 
 //check key input
