@@ -16,8 +16,7 @@ body{
 }
 
 #game-box{
-    /* background-color: rgb(135, 110, 64); */
-    padding: 30px;
+    background-color: rgb(135, 110, 64);
 }
 
 #new-game{
@@ -25,6 +24,7 @@ body{
     font-size: 30px;
     font-weight: bold;
     cursor: pointer;
+    margin: 20px;
     padding: 30px;
     border-radius: 50%;
     border: 3px;
