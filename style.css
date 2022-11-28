@@ -19,6 +19,16 @@ body{
     background-color: rgb(135, 110, 64);
 }
 
+#message-box{
+    font-size: 30px;
+}
+
+#speed{
+    width: 60px;
+    height: 80px;;
+    font-size: 70px;
+}
+
 #new-game{
     background-color: darkcyan;
     font-size: 30px;

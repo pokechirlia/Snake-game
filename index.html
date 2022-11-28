@@ -10,9 +10,14 @@
 <body onload="newGame()">
 	<div class="container">
 		<h1 id="score">Highest score: 0</h1>
-		<h1>Hello</h1>
+		<h1 id = "message-box">Hello</h1>
 		<canvas id = "game-box" width  ="400" height = "400"></canvas>
-		<button id = "new-game" onclick="newgame()">new game?</button>
+		<div class="bottom">
+			<button id = "new-game" onclick="newGame()">New game?</button>
+			<lable for = "speed">Speed</lable>
+			<input type = "number" id="speed" min = "1" max="9"/>
+		</div>
+		
 	</div>
 
 	<script src = "script.js"></script>
