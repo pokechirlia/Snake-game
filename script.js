@@ -101,9 +101,13 @@ function checkFoodEaten(){
 
 function randomFoodPosition(){
 
-    //random so that the food is not too close to the edge
-    foodX = Math.floor(Math.random() * (tileCount-2) + 1);
-    foodY = Math.floor(Math.random() * (tileCount-2) + 1);
+    //food cannot be right at head position
+    while(foodX == headX && foodY == headY)
+    {
+        //random so that the food is not too close to the edge
+        foodX = Math.floor(Math.random() * (tileCount-2) + 1);
+        foodY = Math.floor(Math.random() * (tileCount-2) + 1);
+    }
 }
 
 function updateMessage(gameOver){
