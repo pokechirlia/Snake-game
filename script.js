@@ -23,6 +23,7 @@ let xVelocity = 0, yVelocity = 0;
 
 const snakeParts = [];
 let score = 0;
+let initialLength = 2;
 let highestScore = 0;
 
 //game loop update every interval
@@ -46,13 +47,19 @@ function drawSnake(){
     ctx.fillRect(headX * tileCount, headY*tileCount, tileSize, tileSize);
 
     //draw snake parts other than head
-    ctx.fillStyle = "green";
+    ctx.fillStyle = "red";
     for(let i = 0; i < snakeParts.length; i++){
         let part = snakeParts[i];
         ctx.fillRect(part.x * tileCount, part.y * tileCount, tileSize, tileSize)
     }
 
+    //keep adding the previous coordinate of the head
     snakeParts.push(new SnakePart(headX, headY));
+
+    //delete the last coordinate of the array - as the tail move away from it
+    if(snakeParts.length > score + initialLength){
+        snakeParts.shift();
+    }
 }
 
 function updateSnakePosition(){
