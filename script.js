@@ -3,9 +3,16 @@ const gameBox = document.getElementById("game-box");
 const ctx = gameBox.getContext("2d");
 const gameScoreBox = document.getElementById("score");
 
+//snake class
+class SnakePart{
+    constructor(x, y){
+        this.x = x;
+        this.y = y;
+    }
+}
+
 //attributes from the game
 let speed = 10;
-
 let tileCount = 20; //canvas 20x20
 let tileSize = (gameBox.width / tileCount) - 2; //size slightly smaller
 let headX = 10;
@@ -13,6 +20,8 @@ let headY = 10;
 let foodX = 5;
 let foodY = 5;
 let xVelocity = 0, yVelocity = 0;
+
+const snakeParts = [];
 let score = 0;
 let highestScore = 0;
 
@@ -35,6 +44,15 @@ function clearScreen(){
 function drawSnake(){
     ctx.fillStyle = "red";
     ctx.fillRect(headX * tileCount, headY*tileCount, tileSize, tileSize);
+
+    //draw snake parts other than head
+    ctx.fillStyle = "green";
+    for(let i = 0; i < snakeParts.length; i++){
+        let part = snakeParts[i];
+        ctx.fillRect(part.x * tileCount, part.y * tileCount, tileSize, tileSize)
+    }
+
+    snakeParts.push(new SnakePart(headX, headY));
 }
 
 function updateSnakePosition(){
